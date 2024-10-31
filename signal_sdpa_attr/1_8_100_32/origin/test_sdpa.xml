@@ -1,0 +1,1209 @@
+<?xml version="1.0"?>
+<net name="Model0" version="11">
+	<layers>
+		<layer id="2" name="q" type="Parameter" version="opset1">
+			<data shape="100,1,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="q">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="1" name="k" type="Parameter" version="opset1">
+			<data shape="100,1,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="k">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="0" name="v" type="Parameter" version="opset1">
+			<data shape="100,1,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="v">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="3" name="__module.self_attn/prim::ListUnpack/VariadicSplit.0_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="256, 256" offset="0" size="131072" />
+			<output>
+				<port id="0" precision="FP16" names="36,w_q">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="4" name="__module.self_attn/prim::ListUnpack/VariadicSplit.0" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="5" name="__module.self_attn/aten::linear/MatMul" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="43,q.3">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="6" name="__module.self_attn/aten::size/ShapeOf" type="ShapeOf" version="opset3">
+			<data output_type="i64" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="I64">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="7" name="Constant_8815" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="8" name="Constant_8816" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="9" name="Gather_8817" type="Gather" version="opset8">
+			<data batch_dims="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>3</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64" names="22">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="10" name="Constant_8819" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="131080" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="11" name="Constant_8820" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="12" name="Gather_8821" type="Gather" version="opset8">
+			<data batch_dims="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>3</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64" names="24">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="13" name="Constant_7880" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="131088" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="14" name="__module.self_attn/aten::mul/Multiply" type="Multiply" version="opset1">
+			<data auto_broadcast="numpy" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="I64" names="46,47,52,53,58,59">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="15" name="Constant_8823" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131096" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="16" name="Constant_8824" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="17" name="Gather_8825" type="Gather" version="opset8">
+			<data batch_dims="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>3</dim>
+				</port>
+				<port id="1" precision="I64" />
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64" names="26" />
+			</output>
+		</layer>
+		<layer id="18" name="Constant_12" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131088" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" names="12" />
+			</output>
+		</layer>
+		<layer id="19" name="__module.self_attn/aten::div/Divide" type="Divide" version="opset1">
+			<data auto_broadcast="numpy" m_pythondiv="true" />
+			<input>
+				<port id="0" precision="I64" />
+				<port id="1" precision="I64" />
+			</input>
+			<output>
+				<port id="2" precision="I64" />
+			</output>
+		</layer>
+		<layer id="20" name="__module.self_attn/aten::div/Convert" type="Convert" version="opset1">
+			<data destination_type="i32" />
+			<input>
+				<port id="0" precision="I64" />
+			</input>
+			<output>
+				<port id="1" precision="I32" />
+			</output>
+		</layer>
+		<layer id="21" name="__module.self_attn/aten::div/ConvertLike" type="Convert" version="opset1">
+			<data destination_type="i64" />
+			<input>
+				<port id="0" precision="I32" />
+			</input>
+			<output>
+				<port id="1" precision="I64" names="28,29,30,31,32,33,34,head_dim" />
+			</output>
+		</layer>
+		<layer id="22" name="Constant_64" type="Const" version="opset1">
+			<data element_type="i32" shape="" offset="131104" size="4" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I32" />
+			</output>
+		</layer>
+		<layer id="23" name="Unsqueeze_65" type="Unsqueeze" version="opset1">
+			<input>
+				<port id="0" precision="I64" />
+				<port id="1" precision="I32" />
+			</input>
+			<output>
+				<port id="2" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="24" name="__module.self_attn/prim::ListConstruct" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="I64">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="25" name="__module.self_attn/aten::view/Reshape" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="49">
+					<dim>100</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="26" name="__module.self_attn/aten::transpose/Constant" type="Const" version="opset1">
+			<data element_type="i32" shape="3" offset="131108" size="12" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="27" name="__module.self_attn/aten::transpose/Transpose" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="50,q.5">
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="28" name="Constant_1258" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="131088" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="29" name="__module.self_attn/prim::ListConstruct_1" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="3" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="30" name="__module.self_attn/aten::view/Reshape_1" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="65,q">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="31" name="__module.self_attn/prim::ListUnpack/VariadicSplit.1_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="256, 256" offset="131120" size="131072" />
+			<output>
+				<port id="0" precision="FP16" names="37,w_k">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="32" name="__module.self_attn/prim::ListUnpack/VariadicSplit.1" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="33" name="__module.self_attn/aten::linear/MatMul_1" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="44,k.3">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="34" name="ShapeOf_8826" type="ShapeOf" version="opset3">
+			<data output_type="i64" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="I64">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="35" name="Constant_8827" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="36" name="Constant_8828" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="37" name="Gather_8829" type="Gather" version="opset8">
+			<data batch_dims="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>3</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64" names="51,63">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="38" name="__module.self_attn/prim::ListConstruct_2" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="I64">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="39" name="__module.self_attn/aten::view/Reshape_2" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="55">
+					<dim>100</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="40" name="__module.self_attn/aten::transpose/Constant_1" type="Const" version="opset1">
+			<data element_type="i32" shape="3" offset="131108" size="12" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="41" name="__module.self_attn/aten::transpose/Transpose_1" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="56,k.5">
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="42" name="Constant_1394" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="131088" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="43" name="__module.self_attn/prim::ListConstruct_3" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="3" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="44" name="__module.self_attn/aten::view/Reshape_3" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="67,k">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="45" name="__module.self_attn/prim::ListUnpack/VariadicSplit.2_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="256, 256" offset="262192" size="131072" />
+			<output>
+				<port id="0" precision="FP16" names="38,w_v">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="46" name="__module.self_attn/prim::ListUnpack/VariadicSplit.2" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="47" name="__module.self_attn/aten::linear/MatMul_2" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="45,v.3">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="48" name="ShapeOf_8830" type="ShapeOf" version="opset3">
+			<data output_type="i64" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="I64">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="49" name="Constant_8831" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="50" name="Constant_8832" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="51" name="Gather_8833" type="Gather" version="opset8">
+			<data batch_dims="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>3</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64" names="57">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="52" name="__module.self_attn/prim::ListConstruct_4" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="I64">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="53" name="__module.self_attn/aten::view/Reshape_4" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="61">
+					<dim>100</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="54" name="__module.self_attn/aten::transpose/Constant_2" type="Const" version="opset1">
+			<data element_type="i32" shape="3" offset="131108" size="12" />
+			<output>
+				<port id="0" precision="I32">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="55" name="__module.self_attn/aten::transpose/Transpose_2" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I32">
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="62,v.5">
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="56" name="__module.self_attn/aten::view/Reshape_5" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="69,v">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="57" name="__module.self_attn/aten::scaled_dot_product_attention/ScaledDotProductAttention" type="ScaledDotProductAttention" version="opset13">
+			<data causal="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3" precision="FP32" names="70,attn_output.1">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="58" name="Constant_1666" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="393264" size="32" />
+			<output>
+				<port id="0" precision="I64" names="71">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="59" name="__module.self_attn/aten::permute/Transpose" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>100</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="72">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="60" name="Constant_9854" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="393296" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="61" name="ShapeOf_9850" type="Const" version="opset1">
+			<data element_type="i64" shape="2" offset="393304" size="16" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="62" name="Constant_9851" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="393296" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="63" name="Constant_9852" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="64" name="Gather_9853" type="Gather" version="opset8">
+			<data batch_dims="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>2</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="65" name="Concat_9855" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="I64">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="66" name="__module.self_attn/aten::view/Reshape_6" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="77,attn_output.3">
+					<dim>100</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="67" name="self.self_attn.out_proj.weight_compressed" type="Const" version="opset1">
+			<data element_type="f16" shape="256, 256" offset="393320" size="131072" />
+			<output>
+				<port id="0" precision="FP16" names="self.self_attn.out_proj.weight">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="68" name="self.self_attn.out_proj.weight" type="Convert" version="opset1">
+			<data destination_type="f32" />
+			<rt_info>
+				<attribute name="decompression" version="0" />
+			</rt_info>
+			<input>
+				<port id="0" precision="FP16">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="69" name="__module.self_attn/aten::linear/MatMul_3" type="MatMul" version="opset1">
+			<data transpose_a="false" transpose_b="true" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>256</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="78,attn_output">
+					<dim>100</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="70" name="Constant_7897" type="Const" version="opset1">
+			<data element_type="i64" shape="2" offset="524392" size="16" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="71" name="Constant_7898" type="Const" version="opset1">
+			<data element_type="i64" shape="" offset="131072" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64" />
+			</output>
+		</layer>
+		<layer id="72" name="Gather_7899" type="Gather" version="opset8">
+			<data batch_dims="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>3</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>2</dim>
+				</port>
+				<port id="2" precision="I64" />
+			</input>
+			<output>
+				<port id="3" precision="I64">
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="73" name="Constant_1827" type="Const" version="opset1">
+			<data element_type="i64" shape="1" offset="524408" size="8" />
+			<rt_info>
+				<attribute name="precise" version="0" />
+			</rt_info>
+			<output>
+				<port id="0" precision="I64">
+					<dim>1</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="74" name="__module.self_attn/prim::ListConstruct_7" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="I64">
+					<dim>2</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>1</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="I64">
+					<dim>3</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="75" name="__module.self_attn/aten::view/Reshape_7" type="Reshape" version="opset1">
+			<data special_zero="false" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>3</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="output">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="76" name="Result_1830" type="Result" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>100</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+		</layer>
+	</layers>
+	<edges>
+		<edge from-layer="0" from-port="0" to-layer="47" to-port="0" />
+		<edge from-layer="1" from-port="0" to-layer="33" to-port="0" />
+		<edge from-layer="2" from-port="0" to-layer="5" to-port="0" />
+		<edge from-layer="2" from-port="0" to-layer="6" to-port="0" />
+		<edge from-layer="3" from-port="0" to-layer="4" to-port="0" />
+		<edge from-layer="4" from-port="1" to-layer="5" to-port="1" />
+		<edge from-layer="5" from-port="2" to-layer="25" to-port="0" />
+		<edge from-layer="6" from-port="1" to-layer="12" to-port="0" />
+		<edge from-layer="6" from-port="1" to-layer="17" to-port="0" />
+		<edge from-layer="6" from-port="1" to-layer="72" to-port="0" />
+		<edge from-layer="6" from-port="1" to-layer="9" to-port="0" />
+		<edge from-layer="7" from-port="0" to-layer="9" to-port="1" />
+		<edge from-layer="8" from-port="0" to-layer="9" to-port="2" />
+		<edge from-layer="9" from-port="3" to-layer="29" to-port="2" />
+		<edge from-layer="9" from-port="3" to-layer="24" to-port="0" />
+		<edge from-layer="10" from-port="0" to-layer="12" to-port="1" />
+		<edge from-layer="11" from-port="0" to-layer="12" to-port="2" />
+		<edge from-layer="12" from-port="3" to-layer="14" to-port="0" />
+		<edge from-layer="12" from-port="3" to-layer="43" to-port="0" />
+		<edge from-layer="12" from-port="3" to-layer="29" to-port="0" />
+		<edge from-layer="13" from-port="0" to-layer="14" to-port="1" />
+		<edge from-layer="14" from-port="2" to-layer="52" to-port="1" />
+		<edge from-layer="14" from-port="2" to-layer="38" to-port="1" />
+		<edge from-layer="14" from-port="2" to-layer="24" to-port="1" />
+		<edge from-layer="15" from-port="0" to-layer="17" to-port="1" />
+		<edge from-layer="16" from-port="0" to-layer="17" to-port="2" />
+		<edge from-layer="17" from-port="3" to-layer="19" to-port="0" />
+		<edge from-layer="18" from-port="0" to-layer="19" to-port="1" />
+		<edge from-layer="19" from-port="2" to-layer="20" to-port="0" />
+		<edge from-layer="20" from-port="1" to-layer="21" to-port="0" />
+		<edge from-layer="21" from-port="1" to-layer="23" to-port="0" />
+		<edge from-layer="22" from-port="0" to-layer="23" to-port="1" />
+		<edge from-layer="23" from-port="2" to-layer="38" to-port="2" />
+		<edge from-layer="23" from-port="2" to-layer="43" to-port="3" />
+		<edge from-layer="23" from-port="2" to-layer="52" to-port="2" />
+		<edge from-layer="23" from-port="2" to-layer="24" to-port="2" />
+		<edge from-layer="23" from-port="2" to-layer="29" to-port="3" />
+		<edge from-layer="24" from-port="3" to-layer="25" to-port="1" />
+		<edge from-layer="25" from-port="2" to-layer="27" to-port="0" />
+		<edge from-layer="26" from-port="0" to-layer="27" to-port="1" />
+		<edge from-layer="27" from-port="2" to-layer="30" to-port="0" />
+		<edge from-layer="28" from-port="0" to-layer="29" to-port="1" />
+		<edge from-layer="29" from-port="4" to-layer="30" to-port="1" />
+		<edge from-layer="30" from-port="2" to-layer="57" to-port="0" />
+		<edge from-layer="31" from-port="0" to-layer="32" to-port="0" />
+		<edge from-layer="32" from-port="1" to-layer="33" to-port="1" />
+		<edge from-layer="33" from-port="2" to-layer="39" to-port="0" />
+		<edge from-layer="33" from-port="2" to-layer="34" to-port="0" />
+		<edge from-layer="34" from-port="1" to-layer="37" to-port="0" />
+		<edge from-layer="35" from-port="0" to-layer="37" to-port="1" />
+		<edge from-layer="36" from-port="0" to-layer="37" to-port="2" />
+		<edge from-layer="37" from-port="3" to-layer="38" to-port="0" />
+		<edge from-layer="37" from-port="3" to-layer="43" to-port="2" />
+		<edge from-layer="38" from-port="3" to-layer="39" to-port="1" />
+		<edge from-layer="39" from-port="2" to-layer="41" to-port="0" />
+		<edge from-layer="40" from-port="0" to-layer="41" to-port="1" />
+		<edge from-layer="41" from-port="2" to-layer="44" to-port="0" />
+		<edge from-layer="42" from-port="0" to-layer="43" to-port="1" />
+		<edge from-layer="43" from-port="4" to-layer="56" to-port="1" />
+		<edge from-layer="43" from-port="4" to-layer="44" to-port="1" />
+		<edge from-layer="44" from-port="2" to-layer="57" to-port="1" />
+		<edge from-layer="45" from-port="0" to-layer="46" to-port="0" />
+		<edge from-layer="46" from-port="1" to-layer="47" to-port="1" />
+		<edge from-layer="47" from-port="2" to-layer="53" to-port="0" />
+		<edge from-layer="47" from-port="2" to-layer="48" to-port="0" />
+		<edge from-layer="48" from-port="1" to-layer="51" to-port="0" />
+		<edge from-layer="49" from-port="0" to-layer="51" to-port="1" />
+		<edge from-layer="50" from-port="0" to-layer="51" to-port="2" />
+		<edge from-layer="51" from-port="3" to-layer="52" to-port="0" />
+		<edge from-layer="52" from-port="3" to-layer="53" to-port="1" />
+		<edge from-layer="53" from-port="2" to-layer="55" to-port="0" />
+		<edge from-layer="54" from-port="0" to-layer="55" to-port="1" />
+		<edge from-layer="55" from-port="2" to-layer="56" to-port="0" />
+		<edge from-layer="56" from-port="2" to-layer="57" to-port="2" />
+		<edge from-layer="57" from-port="3" to-layer="59" to-port="0" />
+		<edge from-layer="58" from-port="0" to-layer="59" to-port="1" />
+		<edge from-layer="59" from-port="2" to-layer="66" to-port="0" />
+		<edge from-layer="60" from-port="0" to-layer="65" to-port="0" />
+		<edge from-layer="61" from-port="0" to-layer="64" to-port="0" />
+		<edge from-layer="62" from-port="0" to-layer="64" to-port="1" />
+		<edge from-layer="63" from-port="0" to-layer="64" to-port="2" />
+		<edge from-layer="64" from-port="3" to-layer="65" to-port="1" />
+		<edge from-layer="65" from-port="2" to-layer="66" to-port="1" />
+		<edge from-layer="66" from-port="2" to-layer="69" to-port="0" />
+		<edge from-layer="67" from-port="0" to-layer="68" to-port="0" />
+		<edge from-layer="68" from-port="1" to-layer="69" to-port="1" />
+		<edge from-layer="69" from-port="2" to-layer="75" to-port="0" />
+		<edge from-layer="70" from-port="0" to-layer="72" to-port="1" />
+		<edge from-layer="71" from-port="0" to-layer="72" to-port="2" />
+		<edge from-layer="72" from-port="3" to-layer="74" to-port="0" />
+		<edge from-layer="73" from-port="0" to-layer="74" to-port="1" />
+		<edge from-layer="74" from-port="2" to-layer="75" to-port="1" />
+		<edge from-layer="75" from-port="2" to-layer="76" to-port="0" />
+	</edges>
+	<rt_info>
+		<Runtime_version value="2024.5.0-17028-bf60502a707" />
+		<conversion_parameters>
+			<framework value="pytorch" />
+			<is_python_object value="True" />
+		</conversion_parameters>
+	</rt_info>
+</net>

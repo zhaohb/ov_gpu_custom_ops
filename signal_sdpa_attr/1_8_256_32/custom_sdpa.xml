@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<net name="Model0" version="11">
+	<layers>
+		<layer id="3" name="q" type="Parameter" version="opset1">
+			<data shape="1,8,256,32" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="q">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="2" name="k" type="Parameter" version="opset1">
+			<data shape="1,8,256,32" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="k">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="1" name="v" type="Parameter" version="opset1">
+			<data shape="1,8,256,32" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="v">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="0" name="mask" type="Parameter" version="opset1">
+			<data shape="1,8,1,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="mask">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="4" name="SimpleGPU" type="SimpleGPU" version="extension">
+			<data causal="false" queryLen="256" kvSeqLen="256" batchSize="1" hasMask="1"/>
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>1</dim>
+					<dim>256</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32" names="output">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="5" name="output" type="Result" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>1</dim>
+					<dim>8</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+				</port>
+			</input>
+		</layer>
+	</layers>
+	<edges>
+		<edge from-layer="0" from-port="0" to-layer="4" to-port="3" />
+		<edge from-layer="1" from-port="0" to-layer="4" to-port="2" />
+		<edge from-layer="2" from-port="0" to-layer="4" to-port="1" />
+		<edge from-layer="3" from-port="0" to-layer="4" to-port="0" />
+		<edge from-layer="4" from-port="4" to-layer="5" to-port="0" />
+	</edges>
+	<rt_info />
+</net>

@@ -1,0 +1,17 @@
+<CustomLayer name="SimpleGPU" type="SimpleGPU" version="1">
+  <Kernel entry="sdpa">
+    <Source filename="sdpa_ov.cl"/>
+    <Define name="queryLen" type="int32" param="queryLen" default="256"/>
+    <Define name="kvSeqLen" type="int32" param="kvSeqLen" default="256"/>
+    <Define name="batchSize" type="int32" param="batchSize" default="1"/>
+    <Define name="hasMask" type="bool" param="hasMask" default="0"/>
+  </Kernel>
+  <Buffers>
+    <Tensor arg-index="0" type="input" port-index="0" format="BFYX"/>
+    <Tensor arg-index="1" type="input" port-index="1" format="BFYX"/>
+    <Tensor arg-index="2" type="input" port-index="2" format="BFYX"/>
+    <Tensor arg-index="3" type="output" port-index="0" format="BFYX"/>
+  </Buffers>
+  <CompilerOptions options="-cl-mad-enable -cl-unsafe-math-optimizations -cl-finite-math-only -cl-fast-relaxed-math -DQK=32"/>
+  <WorkSizes global="F*B, (Y+255)/256*32*16" local="1, 32*16"/>
+</CustomLayer> 
