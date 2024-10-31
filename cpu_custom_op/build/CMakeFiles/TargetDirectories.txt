@@ -1,0 +1,3 @@
+/home/test/hongbo/opencl_demo/detr_custom_op/cpu_custom_op/build/CMakeFiles/openvino_template_extension.dir
+/home/test/hongbo/opencl_demo/detr_custom_op/cpu_custom_op/build/CMakeFiles/edit_cache.dir
+/home/test/hongbo/opencl_demo/detr_custom_op/cpu_custom_op/build/CMakeFiles/rebuild_cache.dir

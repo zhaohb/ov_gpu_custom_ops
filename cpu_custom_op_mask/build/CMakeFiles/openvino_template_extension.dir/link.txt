@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -shared  -o libopenvino_template_extension.so CMakeFiles/openvino_template_extension.dir/ov_extension.cpp.o CMakeFiles/openvino_template_extension.dir/simplegpu/simplegpu.cpp.o  -Wl,-rpath,/home/test/hongbo/openvino/install_ov_master/runtime/lib/intel64 /home/test/hongbo/openvino/install_ov_master/runtime/lib/intel64/libopenvino.so.2024.4.0 
