@@ -15,6 +15,9 @@ def infer():
     relu_model = core.read_model(ov_model_path)
     relu_com_model = core.compile_model(relu_model, "GPU.1")
 
+    runtime_model = relu_com_model.get_runtime_model()
+    ov.save_model(runtime_model, "exec_custom_op.xml")
+
     request = relu_com_model.create_infer_request()
 
     input_dict = {"input": input_0}
@@ -38,6 +41,8 @@ def infer_origin():
     relu_model = core.read_model(ov_model_path)
 
     relu_com_model = core.compile_model(relu_model, "GPU.1")
+    runtime_model = relu_com_model.get_runtime_model()
+    ov.save_model(runtime_model, "exec.xml")
 
     request = relu_com_model.create_infer_request()
 
