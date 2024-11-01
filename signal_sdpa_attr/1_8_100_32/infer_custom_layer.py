@@ -11,7 +11,7 @@ def infer():
 
     core = ov.Core()
     core.add_extension("/home/test/hongbo/opencl_demo/detr_custom_op/cpu_custom_op/build/libopenvino_template_extension.so")
-    core.set_property("GPU", {"CONFIG_FILE": "/home/test/hongbo/opencl_demo/detr_custom_op/signal_sdpa_attr/custom_layer.xml"})
+    core.set_property("GPU", {"CONFIG_FILE": "/home/test/hongbo/opencl_demo/detr_custom_op/signal_sdpa_attr/1_8_100_32/custom_layer.xml"})
 
     relu_model = core.read_model(ov_model_path)
     relu_com_model = core.compile_model(relu_model, "GPU.1")
